@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="'UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquesta per accedir a NOEL</title>
+    <link rel="stylesheet" href={{url_for('static', filename='css/intro.css')}}>
+    <style>
+        .header-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+          .header-container img {
+              width: 130px; 
+              align-items: center;      
+          }
+      </style> 
+</head>
+<body>
+    <header>
+        <hr>
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='Logospng/logoblanc.png') }}" alt="Imagen">
+        </div>
+        <hr>
+    </header>
+    <section>
+        <br>
+        <p>Si us plau, empleni el següent formulari per accedir a les nostres instal·lacions.</p>
+        <br>
+        <button type="button" onclick="previousPage()">Anterior</button> <button type="button" onclick="nextPage()">Següent</button>
+    </section>
+
+    <script>
+        function nextPage() {
+            window.location.href = 'pag1cat.html' ;
+        }
+    </script>
+    <script>
+        function previousPage(){
+            window.location.href = 'Idiomes.html' ;
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="'UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquesta per accedir a NOEL</title>
+    <link rel="stylesheet" href={{url_for('static', filename='css/pag2.css')}}>
+    <style>
+        .header-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+          .header-container img {
+              width: 130px; 
+              align-items: center;      
+          }
+      </style>     
+</head>
+<body>
+    <header>
+        <hr>
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='Logospng/logoblanc.png') }}" alt="Imagen">
+        </div>
+        <hr>
+    </header>
+    <section>
+        <br>
+        <p class="destacado"><b>Information de la visite</b></p>
+    </section>
+    <form id="quizForm">
+        <div class="question">
+            <p>Raison de la visite</p>
+            <select name="rao" id="rao" aria-placeholder="...">
+                <option value="">Sélectionnez une option</option>
+                <option value="educativa">Education</option>
+                <option value="comercial">Commercial</option>
+                <option value="proveidor">Fournisseur</option>
+                <option value="auditor">Audit</option>
+                <option value="sanitària">Santé</option>
+                <option value="inspecció">Inspection</option>
+                <option value="serveis externs">Services externes</option>
+                <option value="altres" onclick='document.getElementById("motiu")="block"'>Autres</option>
+            </select>
+        </div>
+        <div id="motiu" style="display:none;">
+            <p>Indiquez la raison</p>
+            <input type="text" id="motiu" name="motiu" placeholder="Écrivez votre réponse">
+        </div>
+        <div class="question">
+            <p>Personne à qui vous visitez</p>
+            <select name="persona" id="persona" aria-placeholder="...">
+                <option value="">Selectionnez une option</option>
+                <option value="Jaume Planella">Jaume Planella</option>
+                <option value="director de planta">Directeur de l'usine</option>
+                <option value="secretari">Secretaire</option>
+                <option value="je ne sais pas">Je ne sais pas</option>
+            </select>
+        </div>
+        
+        <div id="saps">
+            <p>Savez-vous quelle usine vous visiterez?</p>
+            <label>
+                <input type="radio" name="saps" value="si" onclick="mostrarubi()">Oui
+            </label>
+            <label>
+                <input type="radio" name="saps" value="no" onclick="mostrarubi()">Non
+            </label>
+        </div>
+
+        <div id="ubi" style="display:none;">
+            <p>Ubication de l'usine</p>
+            <label>
+                <input type="radio" name="ubi" value="Olot" onclick="plantaubi()">Olot (Girona)
+            </label><br>
+            <label>
+                <input type="radio" name="ubi" value="St Joan" onclick="plantaubi()">St Joan Les Fonts (Girona)
+            </label><br>
+            <label>
+                <input type="radio" name="ubi" value="Terol" onclick="plantaubi()">La mata de Olmos (Terol)
+            </label><br>
+            <label>
+                <input type="radio" name="ubi" value="St Esteve" onclick="plantaubi()">St Esteve de Llémena (Girona)
+            </label><br>
+            <label>
+                <input type="radio" name="ubi" value="Hosca" onclick="plantaubi()">El Grado (Hosca)
+            </label><br>
+            <label>
+                <input type="radio" name="ubi" value="Barcelona" onclick="plantaubi()">Barcelona
+            </label><br>
+            <label>
+                <input type="radio" name="ubi" value="Taradell" onclick="plantaubi()">Taradell (Barcelona)
+            </label><br>
+       </div>
+        
+        <div id="Olot" style="display:none;">
+            <p>Usine à visiter</p> 
+            <label>
+                <input type="checkbox" name="planta" value="1">Olot Meats
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="2">Noel Olot
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="3">Carns Fresques · Noel 2
+            </label><br>
+        </div>
+
+        <div id="St Joan" style="display:none;">
+            <p>Usine à visiter</p>
+            <label>
+                <input type="checkbox" name="planta" value="4">Seu central · Noel 1
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="5">Planta de tall · Noel 3
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="6">Xarcuteria i especialitats · Noel 4
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="7">Centre de formació · Noel 9
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="8">Tap tap food
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="9">Noel 7
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="10">Noel Bas
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="11">Noel Abadesses
+            </label><br>
+        </div>
+
+        <div id="Terol" style="display:none;">
+            <p>Usine à visiter</p>
+            <label>
+                <input type="checkbox" name="planta" value="12">El Cierzo
+            </label><br>
+        </div>
+
+        <div id="St Esteve" style="display:none;">
+            <p>Usine à visiter</p>
+            <label>
+                <input type="checkbox" name="planta" value="13">Jamones Llémena
+            </label><br>
+        </div>
+        <div id="Hosca" style="display:none;">
+            <p>Usine à visiter</p>
+            <label>
+                <input type="checkbox" name="planta" value="14">Jamones Alto Aragón
+            </label><br>
+        </div>
+        <div id="Barcelona" style="display:none;">
+            <p>Usine à visiter</p>
+            <label>
+                <input type="checkbox" name="planta" value="15">Apa Processing
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="17">Cobeverage Lab
+            </label><br>
+        </div>
+        <div id="Taradell" style="display:none;">
+            <p>Usine à visiter</p>
+            <label>
+                <input type="checkbox" name="planta" value="16">Global Art Cooking
+            </label><br>
+        </div>
+        <div class="question">
+            <p>Entrerez-vous à l'usine?</p>
+            <label>
+                <input type="radio" name="entrada" value="si">Oui
+                <input type="radio" name="entrada" value="no">Non
+                <input type="radio" name="entrada" value="ns">Je ne sais pas
+            </label>
+        </div>
+        <div>
+            <br><button type="button" onclick="previousPage()">Anterieur</button> <button type="button" onclick="validarFormulario()">Suivant</button>
+        </div>
+    </form>
+
+    <script>
+        function redirigir() {
+            var respuesta = document.querySelector('input[name="entrada"]:checked');
+            if (respuesta) {
+                if (respuesta.value === 'si') {
+                    window.location.href = 'salutfr.html';
+                } else if (respuesta.value =='ns') {
+                    window.location.href = 'salutfr.html';
+                } else if (respuesta.value =='no') {                    
+                    window.location.href = 'pag3fr.html';
+                } 
+            }     
+        }
+    </script>
+     
+     <script>
+        function previousPage(){
+            window.location.href = 'pag1fr.html' ;
+        }
+    </script>
+
+    <script>
+        function mostrarubi(){
+            var respuesta = document.querySelector('input[name="saps"]:checked');
+            if (respuesta) {
+                if (respuesta.value==="si"){
+                    document.getElementById("ubi").style.display = "block";
+                }else {
+                    document.getElementById("ubi").style.display = "none";
+                    document.getElementById("Olot").style.display = "none";
+                    document.getElementById("St Joan").style.display = "none";
+                    document.getElementById("Terol").style.display = "none";
+                    document.getElementById("St Esteve").style.display = "none";
+                    document.getElementById("Hosca").style.display = "none";
+                    document.getElementById("Barcelona").style.display = "none";
+                    document.getElementById("Taradell").style.display = "none";
+                }
+            }
+        }
+    </script>
+
+    <script>
+        function plantaubi() {
+            var answ = document.querySelector('input[name="ubi"]:checked');
+            if(answ) {
+                if(answ.value==="Olot"){
+                    document.getElementById("Olot").style.display = "block";
+                    document.getElementById("St Joan").style.display = "none"
+                    document.getElementById("Terol").style.display = "none";
+                    document.getElementById("St Esteve").style.display = "none";
+                    document.getElementById("Hosca").style.display = "none";
+                    document.getElementById("Barcelona").style.display = "none";
+                    document.getElementById("Taradell").style.display = "none";
+                } else if (answ.value === "St Joan"){
+                    document.getElementById("Olot").style.display = "none";
+                    document.getElementById("St Joan").style.display = "block";
+                    document.getElementById("Terol").style.display = "none";
+                    document.getElementById("St Esteve").style.display = "none";
+                    document.getElementById("Hosca").style.display = "none";
+                    document.getElementById("Barcelona").style.display = "none";
+                    document.getElementById("Taradell").style.display = "none";
+                } else if (answ.value === "Terol"){
+                    document.getElementById("Olot").style.display = "none";
+                    document.getElementById("St Joan").style.display = "none";
+                    document.getElementById("Terol").style.display = "block";
+                    document.getElementById("St Esteve").style.display = "none";
+                    document.getElementById("Hosca").style.display = "none";
+                    document.getElementById("Barcelona").style.display = "none";
+                    document.getElementById("Taradell").style.display = "none";
+                } else if (answ.value === "St Esteve"){
+                    document.getElementById("Olot").style.display = "none";
+                    document.getElementById("St Joan").style.display = "none";
+                    document.getElementById("Terol").style.display = "none";
+                    document.getElementById("St Esteve").style.display = "block";
+                    document.getElementById("Hosca").style.display = "none";
+                    document.getElementById("Barcelona").style.display = "none";
+                    document.getElementById("Taradell").style.display = "none";
+                } else if (answ.value === "Hosca"){
+                    document.getElementById("Olot").style.display = "none";
+                    document.getElementById("St Joan").style.display = "none";
+                    document.getElementById("Terol").style.display = "none";
+                    document.getElementById("St Esteve").style.display = "none";
+                    document.getElementById("Hosca").style.display = "block";
+                    document.getElementById("Barcelona").style.display = "none";
+                    document.getElementById("Taradell").style.display = "none";
+                } else if (answ.value === "Barcelona"){
+                    document.getElementById("Olot").style.display = "none";
+                    document.getElementById("St Joan").style.display = "none";
+                    document.getElementById("Terol").style.display = "none";
+                    document.getElementById("St Esteve").style.display = "none";
+                    document.getElementById("Hosca").style.display = "none";
+                    document.getElementById("Barcelona").style.display = "block";
+                    document.getElementById("Taradell").style.display = "none";
+                } else{
+                    document.getElementById("Olot").style.display = "none";
+                    document.getElementById("St Joan").style.display = "none";
+                    document.getElementById("Terol").style.display = "none";
+                    document.getElementById("St Esteve").style.display = "none";
+                    document.getElementById("Hosca").style.display = "none";
+                    document.getElementById("Barcelona").style.display = "none";
+                    document.getElementById("Taradell").style.display = "block";
+                }
+            }
+        }
+    </script>
+
+    <script>
+        function validarFormulario(event) {
+            var rao = document.getElementById('rao').value;
+            var persona = document.getElementById('persona').value;
+            
+            if (rao === "" || persona === "") {
+                alert("S'il vous plaît, remplissez tous les champs pour continuer.");
+                event.preventDefault()  
+                return false              
+            } 
+            var saps = document.getElementsByName('saps');
+            var seleccionadas = false;
+            for (var i = 0; i < saps.length; i++) {
+                if (saps[i].checked) {
+                    seleccionadas = true;
+                    break;
+                }
+            }
+            if (!seleccionadas) {
+                alert("S'il vous plaît, remplissez tous les champs pour continuer.");
+                event.preventDefault();
+                return false; 
+            }
+            var entrada = document.getElementsByName('entrada');
+            var seleccionadae = false;
+            for (var i = 0; i < entrada.length; i++) {
+                if (entrada[i].checked) {
+                    seleccionadae = true;
+                    break;
+                }
+            }
+            if (!seleccionadae) {
+                alert("S'il vous plaît, remplissez tous les champs pour continuer.");
+                event.preventDefault();
+                return false;
+            }
+            redirigir()
+        }
+    </script>
+</body>
+</html>

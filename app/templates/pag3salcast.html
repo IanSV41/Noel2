@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="'UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquesta per accedir a NOEL</title>
+    <link rel="stylesheet" href={{url_for('static', filename='css/pag3.css')}}>
+    <style>
+        .header-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+          .header-container img {
+              width: 130px; 
+              align-items: center;      
+          }
+      </style>     
+</head>
+<body>
+    <img src="{{ url_for('static', filename='Normcast/cast1.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast2.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast3.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast4.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast5.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast6.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast7.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast8.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast9.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast10.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast11.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast12.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast13.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast14.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast15.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast16.png') }}" alt="Imagen" width="600" height="848"><br>
+    <h5>
+        <label>
+            <input type="checkbox" name="accepto" value="si">He leído y acepto la "Política de privacidad" y la "Política de seguridad y salud".
+        </label><br>
+    </h5>
+    <button type="button" onclick="previousPage()">Anterior</button> <button type="button" onclick="validarFormulario()">Siguiente</button>
+
+
+</body>
+</html>
+
+<script>
+    function previousPage(){
+        window.location.href = 'salutcast.html' ;
+    }
+</script>
+
+<script>
+    function validarFormulario(event) {
+        var checkboxes = document.getElementsByName('accepto');
+        var seleccionada = false;
+            
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    seleccionada = true;
+                    break;
+                }
+            }
+
+            if (!seleccionada) {
+                alert("Por favor, acepte los términos i condiciones para continuar.");
+                event.preventDefault();
+                return false; 
+            }
+            nextPage();
+    }
+</script>
+
+<script>
+    function nextPage() {
+        window.location.href = 'confirmacion_cast.html' ;
+    }
+</script>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="'UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquesta per accedir a NOEL</title>
+    <link rel="stylesheet" href={{url_for('static', filename='css/intro.css')}}>
+    
+    <style>
+        .header-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+          .header-container img {
+              width: 130px; 
+              align-items: center;      
+          }
+
+        .image-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+          .image-container img {
+              width: 80%; /* Ajusta el tamaño de la imagen */
+              align-items: center;
+              
+          }
+  
+      </style>
+</head>
+<body>
+    <header>
+        <hr>
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='Logospng/logoblanc.png') }}" alt="Imagen">
+        </div>
+        <hr>
+    </header>
+    <section>
+        <br><br>
+        <p>Por favor, recuerde <strong> pasar por la caseta de seguridad </strong> para que podamos verificar su documento de identificación.</p><br>
+        <p>Una vez su identidad sea verificada, por favor vaya a la ubicación mostrada en el mapa para encontar al personal encargado de su visita.</p><br>
+        <p>¡Muchas gracias y que tenga una buena visita!</p><br>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='Fotfinmap/provamapa.png') }}" alt="Segunda Imagen">
+        </div>
+        <br>
+        <p>Por favor, asegurese de conservar o hacer captura de pantalla del QR que utilizará para registrar su paso por nuestras instalaciones.</p>
+        <img id="qr-code" src="" alt="QR Code" />
+        <button onclick="generarQR()" style="display: none;">Generar QR</button>
+        <br>
+    </section>
+    <script>
+        function generarQR() {
+            const randomString = Math.random().toString(36).substring(7);
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${randomString}&size=200x200`;
+            document.getElementById('qr-code').src = qrUrl;
+        }
+        generarQR();
+    </script>
+</body>
+</html>

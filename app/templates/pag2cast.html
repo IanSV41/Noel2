@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de acceso NOEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pag2.css') }}">
+    <style>
+        .header-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header-container img {
+            width: 130px; 
+            align-items: center;      
+        }
+    </style>     
+</head>
+<body>
+    <header>
+        <hr>
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='Logospng/logoblanc.png') }}" alt="Imagen">
+        </div>
+        <hr>
+    </header>
+    <section>
+        <br>
+        <p class="destacado"><b>Datos de la visita</b></p>
+    </section>
+    <form id="quizForm">
+        <!-- Razón de la visita -->
+        <div class="question">
+            <p>Razón de la visita</p>
+            <select name="rao" id="rao">
+                <option value="">Seleccione una opción</option>
+                <option value="educativa">Educativa</option>
+                <option value="comercial">Comercial</option>
+                <option value="proveidor">Proveedor</option>
+                <option value="auditoria">Auditoría</option>
+                <option value="sanitària">Sanitaria</option>
+                <option value="inspecció">Inspección</option>
+                <option value="serveis externs">Servicios externos</option>
+                <option value="altres">Otros</option>
+            </select>
+        </div>
+        
+
+        <!-- Persona a visitar -->
+        <div class="question">
+            <p>Persona a visitar</p>
+            <select name="persona" id="persona">
+                <option value="">Seleccione una opción</option>
+                <option value="Jaume Planella">Jaume Planella</option>
+                <option value="director de planta">Director de planta</option>
+                <option value="secretari">Secretario</option>
+                <option value="no ho se">No lo se</option>
+            </select>
+        </div>
+
+        <!-- Saps quina planta visitaràs? -->
+        <div id="saps">
+            <p>¿Sabe que planta visitara?</p>
+            <label>
+                <input type="radio" name="saps" value="si" onclick="mostrarubi()">Sí
+            </label>
+            <label>
+                <input type="radio" name="saps" value="no" onclick="mostrarubi()">No
+            </label>
+        </div>
+
+        <!-- Ubicación de la planta -->
+        <div id="ubi" style="display:none;">
+            <p>Ubicación de la planta</p>
+            <label>
+                <input type="radio" name="ubi" value="Olot" onclick="plantaubi()">Olot (Gerona)<br>
+                <input type="radio" name="ubi" value="St Joan" onclick="plantaubi()">St Joan Les Fonts (Gerona)<br>
+                <input type="radio" name="ubi" value="Terol" onclick="plantaubi()">La mata de Olmos (Teruel)<br>
+                <input type="radio" name="ubi" value="St Esteve" onclick="plantaubi()">St Esteve de Llémena (Gerona)<br>
+                <input type="radio" name="ubi" value="Hosca" onclick="plantaubi()">El Grado (Huesca)<br>
+                <input type="radio" name="ubi" value="Barcelona" onclick="plantaubi()">Barcelona<br>
+                <input type="radio" name="ubi" value="Taradell" onclick="plantaubi()">Taradell (Barcelona)<br>
+            </label><br>
+        </div>
+
+        <!-- Plantas a visitar -->
+        <div id="Olot" style="display:none;">
+            <p>Planta a visitar</p> 
+            <label>
+                <input type="checkbox" name="planta" value="Olot Meats">Olot Meats
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="Noel Olot">Noel Olot
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="Carnes Frescas · Noel 2">Carnes Frescas · Noel 2
+            </label><br>
+        </div>
+        
+        <div id="St Joan" style="display:none;">
+            <p>Planta a visitar</p>
+            <label>
+                <input type="checkbox" name="planta" value="Sede central · Noel 1">Sede central · Noel 1
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="Planta de corte · Noel 3">Planta de corte · Noel 3
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="Charcutería i especialidades · Noel 4">Charcutería i especialidades · Noel 4
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="Centro de formación · Noel 9">Centro de formación · Noel 9
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="Tap tap food">Tap tap food
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="Noel 7">Noel 7
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="Noel Bas">Noel Bas
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="Noel Abadesses">Noel Abadesses
+            </label><br>
+        </div>
+        
+        <div id="Terol" style="display:none;">
+            <p>Planta a visitar</p>
+            <label>
+                <input type="checkbox" name="planta" value="El Cierzo">El Cierzo
+            </label><br>
+        </div>
+        
+        <div id="St Esteve" style="display:none;">
+            <p>Planta a visitar</p>
+            <label>
+                <input type="checkbox" name="planta" value="Jamones Llémena">Jamones Llémena
+            </label><br>
+        </div>
+        
+        <div id="Hosca" style="display:none;">
+            <p>Planta a visitar</p>
+            <label>
+                <input type="checkbox" name="planta" value="Jamones Alto Aragón">Jamones Alto Aragón
+            </label><br>
+        </div>
+        
+        <div id="Barcelona" style="display:none;">
+            <p>Planta a visitar</p>
+            <label>
+                <input type="checkbox" name="planta" value="Apa Processing">Apa Processing
+            </label><br>
+            <label>
+                <input type="checkbox" name="planta" value="Cobeverage Lab">Cobeverage Lab
+            </label><br>
+        </div>
+        
+        <div id="Taradell" style="display:none;">
+            <p>Planta a visitar</p>
+            <label>
+                <input type="checkbox" name="planta" value="Global Art Cooking">Global Art Cooking
+            </label><br>
+        </div>
+
+        <!-- Entraràs a planta? -->
+        <div class="question">
+            <p>¿Entrará a planta?</p>
+            <label>
+                <input type="radio" name="entrada" value="si">Sí
+                <input type="radio" name="entrada" value="no">No
+                <input type="radio" name="entrada" value="ns">No lo se
+            </label><br>
+        </div>
+
+        <!-- Botones -->
+        <div>
+            <br><button type="button" onclick="previousPage()">Anterior</button> 
+            <button type="button" onclick="validarFormulario(event)">Siguiente</button>
+        </div>
+    </form>
+
+    <script>
+        function validarFormulario(event) {
+            const rao = document.getElementById('rao').value;
+            const persona = document.getElementById('persona').value;
+
+            if (rao === "" || persona === "") {
+                alert("Por favor, rellene todos los campos para continuar.");
+                return false;              
+            }
+
+            guardarRespuestasPag2();
+        }
+
+        function guardarRespuestasPag2() {
+            const data = {
+                rao: document.getElementById('rao').value,
+                persona: document.getElementById('persona').value,
+                saps: Array.from(document.getElementsByName('saps')).find(el => el.checked)?.value || '',
+                ubi: Array.from(document.getElementsByName('ubi')).find(el => el.checked)?.value || '',
+                planta: Array.from(document.querySelectorAll('input[name="planta"]:checked')).map(el => el.value),
+                entrada: Array.from(document.getElementsByName('entrada')).find(el => el.checked)?.value || ''
+            };
+
+            fetch('/guardar_pag2', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if(response.ok) redirigir();
+                else alert('Error al guardar los datos.');
+            })
+            .catch(error => alert('Error al enviar los datos.'));
+        }
+
+        function redirigir() {
+            const entrada = document.querySelector('input[name="entrada"]:checked')?.value;
+            if (entrada === 'si' || entrada === 'ns') window.location.href = 'salutcast.html';
+            else if (entrada === 'no') window.location.href = 'pag3cast.html';
+        }
+
+        function previousPage() {
+            window.location.href = 'pag1cast.html';
+        }
+
+        function mostrarubi() {
+            const saps = document.querySelector('input[name="saps"]:checked')?.value;
+            document.getElementById("ubi").style.display = saps === "si" ? "block" : "none";
+        }
+
+        function plantaubi() {
+            const ubi = document.querySelector('input[name="ubi"]:checked')?.value;
+            const plantas = ["Olot", "St Joan", "Terol", "St Esteve", "Hosca", "Barcelona", "Taradell"];
+            plantas.forEach(planta => {
+                document.getElementById(planta).style.display = planta === ubi ? "block" : "none";
+            });
+        }
+    </script>
+</body>
+</html>

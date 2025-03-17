@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="'UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquesta per accedir a NOEL</title>
+    <link rel="stylesheet" href={{url_for('static', filename='css/salut.css')}}> 
+    <style>
+        .header-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+          .header-container img {
+              width: 130px; 
+              align-items: center;      
+          }
+      </style>    
+</head>
+<body> 
+    <header>
+        <hr>
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='Logospng/logoblanc.png') }}" alt="Imagen">
+        </div>
+        <hr>
+    </header>
+    <section>
+        <p class="destacado"><b>Health questionnaire</b></p>
+    </section>
+
+    <form>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>In the las three months you or someone close to you suffered...</th>
+                    <th>Yes</th>
+                    <th>No</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Diarrhea and/or vomiting</td>
+                    <td><input type="radio" name="diarrea i/o vòmits" value="si"></td>
+                    <td><input type="radio" name="diarrea i/o vòmits" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Skin wounds</td>
+                    <td><input type="radio" name="ferides a la pell" value="si"></td>
+                    <td><input type="radio" name="ferides a la pell" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Skin diseases: eczema, dermatitis...</td>
+                    <td><input type="radio" name="malalties a la pell" value="si"></td>
+                    <td><input type="radio" name="malalties a la pell" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Diseases in the nose, throat, ears, gums or mouth</td>
+                    <td><input type="radio" name="malalties al nas/gola/orelles/geniva/boca" value="si"></td>
+                    <td><input type="radio" name="malalties al nas/gola/orelles/geniva/boca" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Bronquitis</td>
+                    <td><input type="radio" name="bronquitis" value="si"></td>
+                    <td><input type="radio" name="bronquitis" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Typhoid fever</td>
+                    <td><input type="radio" name="febre tifoidea" value="si"></td>
+                    <td><input type="radio" name="febre tifoidea" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Salmonella infections</td>
+                    <td><input type="radio" name="salmonella" value="si"></td>
+                    <td><input type="radio" name="salmonella" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Hepatitis</td>
+                    <td><input type="radio" name="hepatitis" value="si"></td>
+                    <td><input type="radio" name="hepatitis" value="no"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="question">
+            <p>Do you have any allergies?</p>
+            <label>
+                <input type="radio" name="al·lergies" value="si" onclick="al·lergia()">Yes
+            </label>
+            <label>
+                <input type="radio" name="al·lergies" value="no" onclick="al·lergia()">No
+            </label>
+        </div>
+
+        <div id="al·lergies" style="display:none;">
+            <p>Please, indicate what allergy you suffer from</p>
+            <textarea name="tipus al·lergies" rows="1" cols="50" placeholder="Write your answer"></textarea>
+        </div>
+
+        <p>Do you wear glasses or lenses?</p>
+        <label>
+            <input type="radio" name="ulleres/lentilles" value="si">Yes
+        </label>
+        <label>
+            <input type="radio" name="ulleres/lentilles" value="no">No
+        </label>
+
+        <div class="question">
+        <p>In the last three months, have you visited other food production plants, farms or slaughterhouses?</p>
+        <label>
+            <input type="radio" name="altres plantes" value="si" onclick="tipus()">Yes
+            <input type="radio" name="altres plantes" value="no" onclick="tipus()">No
+        </label>
+        </div>
+        
+        <div id="altres plantes" style="display:none;">
+            <p>Please, indicate the type of plant visited</p>
+            <textarea name="'resposta" rows="1" cols="50" placeholder="Write your answer"></textarea>
+        </div>
+
+        <div class="question">
+            <p>In the las three months, have you travelled abroad?</p>
+            <label>
+                <input type="radio" name="viatges" value="si" onclick="pais()">Yes
+                <input type="radio" name="viatges" value="no" onclick="pais()">No
+            </label>
+        </div>
+        <div id="viatges" style="display:none;">
+            <p>Please, indicate the country or countries</p>
+            <textarea name="'resposta" rows="1" cols="50" placeholder="Write your answer"></textarea>
+        </div>
+        
+        <div class="question">
+            <p>In accordance with the prevention protocol I declare that:</p>
+            <label>
+                <input type="checkbox" name="COVID" value="prevenció">I've been informed of the measurements to prevent the possible contagion and spread of COVID-19 and I will carry them out.
+            </label>
+            <br>    
+            <br>
+            <label>
+                <input type="checkbox" name="COVID" value="negatiu">I am not COVID positive.
+            </label>
+        </div>
+        <br>
+        <button type="button" onclick="previousPage()">Previous</button> <button type="button" onclick="nextPage()">Next</button>
+    </form>
+
+    <script>
+        function tipus(){
+            var respuesta = document.querySelector('input[name="altres plantes"]:checked');
+            if (respuesta) {
+                if (respuesta.value==="si"){
+                    document.getElementById("altres plantes").style.display = "block";
+                }else {
+                    document.getElementById("altres plantes").style.display = "none";
+                }
+            }
+        }
+    </script>
+
+    <script>
+        function pais(){
+            var respuesta = document.querySelector('input[name="viatges"]:checked');
+            if (respuesta) {
+                if (respuesta.value==="si"){
+                    document.getElementById("viatges").style.display = "block";
+                }else {
+                    document.getElementById("viatges").style.display = "none";
+                }
+            }
+        }
+    </script>
+
+    <script>
+        function al·lergia(){
+            var respuesta = document.querySelector('input[name="al·lergies"]:checked');
+            if (respuesta) {
+                if (respuesta.value==="si"){
+                    document.getElementById("al·lergies").style.display = "block";
+                }else {
+                    document.getElementById("al·lergies").style.display = "none";
+                }
+            }
+        }
+    </script>
+
+    <script>
+        function nextPage() {
+            window.location.href = 'pag3saleng.html' ;
+        }
+    </script>
+
+    <script>
+        function previousPage(){
+            window.location.href = 'pag2eng.html' ;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="'UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquesta per accedir a NOEL</title>
+    <link rel="stylesheet" href={{url_for('static', filename='css/idiomes.css')}}>
+    <style>
+        .header-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+          .header-container img {
+              width: 130px; 
+              align-items: center;      
+          }
+      </style>     
+</head>
+<body>
+    <header>
+        <hr>
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='Logospng/logoblanc.png') }}" alt="Imagen">
+        </div>
+        <hr>
+    </header>
+
+    <form>
+        <label>
+            <input type="radio" name="idioma" value="catala"> Català
+        </label>
+        <label>
+            <input type="radio" name="idioma" value="castellano"> Castellano
+        </label>
+        <label>
+            <input type="radio" name="idioma" value="english"> English
+        </label>
+        <label>
+            <input type="radio" name="idioma" value="francais"> Français
+        </label><br><br>
+
+        <button type="button" onclick="redirigir()">Siguiente</button>
+    </form>
+
+    <script>
+        function redirigir() {
+            var respuesta = document.querySelector('input[name="idioma"]:checked');
+
+            if (respuesta) {
+                if (respuesta.value === 'catala') {
+                    window.location.href = 'introcat.html';
+                } else if (respuesta.value =='castellano') {
+                    window.location.href = 'introcast.html';
+                } else if (respuesta.value =='english') {                    
+                    window.location.href = 'introeng.html';
+                } else if (respuesta.value =='francais') {
+                    window.location.href = 'introfr.html';
+                }
+            }     
+        }
+    </script>
+
+    
+</body>
+</html>

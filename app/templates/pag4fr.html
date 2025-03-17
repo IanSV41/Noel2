@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquesta per accedir a NOEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/intro.css') }}">
+    <style>
+        .header-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header-container img {
+            width: 130px; 
+            align-items: center;      
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container img {
+            width: 80%; 
+            align-items: center;  
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <hr>
+        <!-- LOGO FIJO (no cambia) -->
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='Logospng/logoblanc.png') }}" alt="Logo">
+        </div>
+        <hr>
+    </header>
+    <section>
+        <br><br>
+        <p>Si tu aimes, souviens-toi <strong> passer le contrôle de sécurité </strong> afin que nous puissions vérifier votre pièce d'identité.</p><br>
+        <p>Un policier, après avoir vérifié votre identité, vous dirige vers l'endroit indiqué sur la carte pour contacter le personnel responsable de votre visite.</p><br>
+        <p>Merci beaucoup et bonne visite !</p><br>
+        <!-- IMAGEN DEL MAPA DINÁMICA -->
+        <div class="image-container">
+            {% if session['rao'] == 'educativa' %}
+                <img src="{{ url_for('static', filename='Fotfinmap/educativa.png') }}" alt="Mapa Educativa">
+            {% elif session['rao'] == 'comercial' %}
+                <img src="{{ url_for('static', filename='Fotfinmap/comercial.png') }}" alt="Mapa Comercial">
+            {% elif session['rao'] == 'proveidor' %}
+                <img src="{{ url_for('static', filename='Fotfinmap/proveidor.png') }}" alt="Mapa Proveïdor">
+            {% elif session['rao'] == 'auditoria' %}
+                <img src="{{ url_for('static', filename='Fotfinmap/auditoria.png') }}" alt="Mapa Auditoria">
+            {% elif session['rao'] == 'sanitària' %}
+                <img src="{{ url_for('static', filename='Fotfinmap/sanitaria.png') }}" alt="Mapa Sanitària">
+            {% elif session['rao'] == 'inspecció' %}
+                <img src="{{ url_for('static', filename='Fotfinmap/inspeccio.png') }}" alt="Mapa Inspecció">
+            {% elif session['rao'] == 'serveis externs' %}
+                <img src="{{ url_for('static', filename='Fotfinmap/serveis.png') }}" alt="Mapa Serveis Externs">
+            {% elif session['rao'] == 'altres' %}
+                <img src="{{ url_for('static', filename='Fotfinmap/altres.png') }}" alt="Mapa Altres">
+            {% else %}
+                <img src="{{ url_for('static', filename='Fotfinmap/provamapa.png') }}" alt="Mapa por Defecto">
+            {% endif %}
+            <br><br>
+        </div>
+        <p>Si vous utilisez plau, assurez-vous de conserver une capture d'écran du QR que vous utiliserez pour enregistrer votre pays auprès de nos installations.</p>
+        <img id="qr-code" src="" alt="QR Code" />
+        <button onclick="generarQR()" style="display: none;">Générer des QR</button>
+        <br>
+    <script>
+        function generarQR() {
+            const randomString = Math.random().toString(36).substring(7);
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${randomString}&size=200x200`;
+            document.getElementById('qr-code').src = qrUrl;
+        }
+        generarQR();
+    </script>
+    </section>
+</body>
+</html>

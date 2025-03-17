@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="'UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquesta per accedir a NOEL</title>
+    <link rel="stylesheet" href={{url_for('static', filename='css/pag3.css')}}>
+    <style>
+        .header-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+          .header-container img {
+              width: 130px; 
+              align-items: center;      
+          }
+      </style>     
+</head>
+<body>
+    <img src="{{ url_for('static', filename='Normeng/eng1.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng2.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng3.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng4.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng5.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng6.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng7.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng8.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng9.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng10.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng11.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng12.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng13.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng14.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng15.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normeng/eng16.png') }}" alt="Imagen" width="600" height="848"><br>
+    <h5>
+        <label>
+            <input type="checkbox" name="accepto" value="si">J'ai lu et j'accepte la "Politique de confidentialité" et la "Politique de sécurité et santé".
+        </label><br>
+    </h5>
+    <button type="button" onclick="previousPage()">Anterieur</button> <button type="button" onclick="validarFormulario()">Suivant</button>
+
+
+</body>
+</html>
+
+<script>
+    function previousPage(){
+        window.location.href = 'pag2fr.html' ;
+    }
+</script>
+<script>
+    function validarFormulario(event) {
+        var checkboxes = document.getElementsByName('accepto');
+        var seleccionada = false;
+            
+            for (var i = 0; i < checkboxes.length; i++) {
+                if (checkboxes[i].checked) {
+                    seleccionada = true;
+                    break;
+                }
+            }
+
+            if (!seleccionada) {
+                alert("Please, accept the terms and condictions to continue.");
+                event.preventDefault();
+                return false; 
+            }
+            nextPage();
+    }
+</script>
+<script>
+    function nextPage() {
+        window.location.href = 'confirmacio_fr.html' ;
+    }
+</script>

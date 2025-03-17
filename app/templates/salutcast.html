@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquesta per accedir a NOEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/salut.css') }}">
+    <style>
+        .header-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header-container img {
+            width: 130px; 
+            align-items: center;      
+        }
+    </style>     
+</head>
+<body>
+    <header>
+        <hr>
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='Logospng/logoblanc.png') }}" alt="Imagen">
+        </div>
+        <hr>
+    </header>
+    <section>
+        <p class="destacado"><b>Cuestionario de salud</b></p>
+    </section>
+
+    <form id="formSalut">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>En los últimos tres meses usted o alguien de su entorno ha padecido...</th>
+                    <th>Sí</th>
+                    <th>No</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Diarrea y/o vómitos</td>
+                    <td><input type="radio" name="diarrea_i_o_vomits" value="si"></td>
+                    <td><input type="radio" name="diarrea_i_o_vomits" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Heridas en la piel</td>
+                    <td><input type="radio" name="ferides_a_la_pell" value="si"></td>
+                    <td><input type="radio" name="ferides_a_la_pell" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Enfermedades en la piel: eczemas, dermatitis...</td>
+                    <td><input type="radio" name="malalties_a_la_pell" value="si"></td>
+                    <td><input type="radio" name="malalties_a_la_pell" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Enfermedades en la nariz, garganta, orejas, encias o boca</td>
+                    <td><input type="radio" name="malalties_al_nas_gola_orelles_geniva_boca" value="si"></td>
+                    <td><input type="radio" name="malalties_al_nas_gola_orelles_geniva_boca" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Bronquitis</td>
+                    <td><input type="radio" name="bronquitis" value="si"></td>
+                    <td><input type="radio" name="bronquitis" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Fiebre tifoidea</td>
+                    <td><input type="radio" name="febre_tifoidea" value="si"></td>
+                    <td><input type="radio" name="febre_tifoidea" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Infecciones por Salmonella</td>
+                    <td><input type="radio" name="salmonella" value="si"></td>
+                    <td><input type="radio" name="salmonella" value="no"></td>
+                </tr>
+                <tr>
+                    <td>Hepatitis</td>
+                    <td><input type="radio" name="hepatitis" value="si"></td>
+                    <td><input type="radio" name="hepatitis" value="no"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Pregunta 9: Alergias -->
+        <div class="question">
+            <p>¿Padece alergias?</p>
+            <label>
+                <input type="radio" name="al·lergies" value="si" onclick="al·lergia()">Sí
+            </label>
+            <label>
+                <input type="radio" name="al·lergies" value="no" onclick="al·lergia()">No
+            </label>
+        </div>
+        <div id="al·lergies" style="display:none;">
+            <p>Por favor, indique cuales</p>
+            <textarea name="tipus_al·lergies" rows="1" cols="50" placeholder="Escrigui la seva resposta"></textarea>
+        </div>
+
+        <!-- Pregunta 10: Gafas o lentes -->
+        <p>¿Lleva gafas o lentillas?</p>
+        <label>
+            <input type="radio" name="ulleres_lentilles" value="si">Sí
+        </label>
+        <label>
+            <input type="radio" name="ulleres_lentilles" value="no">No
+        </label>
+
+        <!-- Pregunta 11: Visitas a otras plantas -->
+        <div class="question">
+            <p>¿En los últimos tres meses, ha visitado otras plantas de producción de alimentos, granjas o mataderos?</p>
+            <label>
+                <input type="radio" name="altres_plantes" value="si" onclick="tipus()">Sí
+                <input type="radio" name="altres_plantes" value="no" onclick="tipus()">No
+            </label>
+        </div>
+        <div id="altres_plantes" style="display:none;">
+            <p>Por favor, indique el tipo de planta visitada</p>
+            <textarea name="resposta_plantes" rows="1" cols="50" placeholder="Escriu la teva resposta"></textarea>
+        </div>
+
+        <!-- Pregunta 12: Viajes al extranjero -->
+        <div class="question">
+            <p>¿En los últimos tres meses, ha viajado al extrangero?</p>
+            <label>
+                <input type="radio" name="viatges" value="si" onclick="pais()">Sí
+                <input type="radio" name="viatges" value="no" onclick="pais()">No
+            </label>
+        </div>
+        <div id="viatges" style="display:none;">
+            <p>Por favor, indique el país/países</p>
+            <textarea name="resposta_viatges" rows="1" cols="50" placeholder="Escriu la teva resposta"></textarea>
+        </div>
+
+        <!-- Preguntas 13 y 14: Protocol COVID -->
+        <div class="question">
+            <p>De acuerdo con nuestro protocolo de prevención declaro que:</p>
+            <label>
+                <input type="checkbox" name="COVID" value="prevenció">He sido informado de las medidas de prevención de posible contagio y propagación del COVID-19 y las llevaré a término.
+            </label><br>   
+            <label>
+                <input type="checkbox" name="COVID" value="negatiu">No soy COVID positivo.
+            </label>
+        </div>
+
+        <!-- Botones -->
+        <br>
+        <button type="button" onclick="previousPage()">Anterior</button> 
+        <button type="button" onclick="guardarRespuestasSalut()">Siguiente</button>
+    </form>
+
+    <script>
+        function tipus() {
+            var respuesta = document.querySelector('input[name="altres_plantes"]:checked');
+            if (respuesta) {
+                document.getElementById("altres_plantes").style.display = respuesta.value === "si" ? "block" : "none";
+            }
+        }
+
+        function pais() {
+            var respuesta = document.querySelector('input[name="viatges"]:checked');
+            if (respuesta) {
+                document.getElementById("viatges").style.display = respuesta.value === "si" ? "block" : "none";
+            }
+        }
+
+        function al·lergia() {
+            var respuesta = document.querySelector('input[name="al·lergies"]:checked');
+            if (respuesta) {
+                document.getElementById("al·lergies").style.display = respuesta.value === "si" ? "block" : "none";
+            }
+        }
+
+        function guardarRespuestasSalut() {
+            const data = {
+                diarrea_i_o_vomits: document.querySelector('input[name="diarrea_i_o_vomits"]:checked')?.value || 'no',
+                ferides_a_la_pell: document.querySelector('input[name="ferides_a_la_pell"]:checked')?.value || 'no',
+                malalties_a_la_pell: document.querySelector('input[name="malalties_a_la_pell"]:checked')?.value || 'no',
+                malalties_al_nas_gola_orelles_geniva_boca: document.querySelector('input[name="malalties_al_nas_gola_orelles_geniva_boca"]:checked')?.value || 'no',
+                bronquitis: document.querySelector('input[name="bronquitis"]:checked')?.value || 'no',
+                febre_tifoidea: document.querySelector('input[name="febre_tifoidea"]:checked')?.value || 'no',
+                salmonella: document.querySelector('input[name="salmonella"]:checked')?.value || 'no',
+                hepatitis: document.querySelector('input[name="hepatitis"]:checked')?.value || 'no',
+                al·lergies: document.querySelector('input[name="al·lergies"]:checked')?.value || 'no',
+                tipus_al·lergies: document.querySelector('textarea[name="tipus_al·lergies"]').value || '',
+                ulleres_lentilles: document.querySelector('input[name="ulleres_lentilles"]:checked')?.value || 'no',
+                altres_plantes: document.querySelector('input[name="altres_plantes"]:checked')?.value || 'no',
+                resposta_plantes: document.querySelector('textarea[name="resposta_plantes"]').value || '',
+                viatges: document.querySelector('input[name="viatges"]:checked')?.value || 'no',
+                resposta_viatges: document.querySelector('textarea[name="resposta_viatges"]').value || '',
+                COVID: Array.from(document.getElementsByName('COVID')).filter(el => el.checked).map(el => el.value)
+            };
+
+            fetch('/guardar_pagsalut', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if(response.ok) nextPage();
+                else alert('Error al guardar los datos.');
+            })
+            .catch(error => {
+                console.error('Error en fetch:', error);
+                alert('Error al enviar los datos.');
+            });
+        }
+
+        function nextPage() {
+            window.location.href = 'pag3salcast.html';
+        }
+
+        function previousPage() {
+            window.location.href = 'pag2cast.html';
+        }
+    </script>
+</body>
+</html>

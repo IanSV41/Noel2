@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="'UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquesta per accedir a NOEL</title>
+    <link rel="stylesheet" href={{url_for('static', filename='css/pag1.css')}}>
+    <style>
+        .header-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+          .header-container img {
+              width: 130px; 
+              align-items: center;      
+          }
+      </style> 
+</head>
+<body>
+    <header>
+        <hr>
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='Logospng/logoblanc.png') }}" alt="Imagen">
+        </div>
+        <hr>
+    </header>
+    <section>
+        <br>
+        <p class="destacado"><b>Personal data</b></p>
+    </section>
+    <form id="quizForm">
+        <div class="question">
+            <p>Name</p>
+            <input type="text" id="nom" name="nom" placeholder="Write your answer"><br>
+            <p>Surname</p>
+            <input type="text" id="cognom" name="cognom" placeholder="Write your answer"><br>
+            <p>Identification document</p>
+            <input type="text" id="DNI" name="DNI" placeholder="Write your answer"><br>
+            <p>Phone number</p>
+            <input type="text" id="num tel" name="num tel" placeholder="Write your answer"><br>
+            <p>Email</p>
+            <input type="text" id="email" name="email" placeholder="Write your answer"><br>
+        </div>
+        <div class="question">
+            <p>Did you come by car?</p>
+            <label>
+                <input type="radio" id="cotxe" name="cotxe" value="si" onclick='document.getElementById("matricula").style.display = "block"'>Yes
+            </label>
+            <label>
+                <input type="radio" id="cotxe" name="cotxe" value="no" onclick='document.getElementById("matricula").style.display = "none"'>No
+            </label>
+        </div>
+        <div id="matricula" style="display:none;">
+            <p>Car plate number</p>
+            <input type="text" id="matricula" name="matricula" placeholder="Write your answer"><br>
+            <br>
+        </div>
+        <div class="question">
+            <p>Do you come on behalf of a company?</p>
+            <label>
+                <input type="radio" id="emisari empresa" name="emisari empresa" value="si" onclick='document.getElementById("empresa").style.display = "block"'>Yes
+            </label>
+            <label>
+                <input type="radio" id="emisari empresa" name="emisari empresa" value="no" onclick='document.getElementById("empresa").style.display = "none"'>No
+            </label>
+        </div>
+        <div id="empresa" style="display:none;">
+            <p>From which one?</p>
+            <input type="text" id="empresa" name="empresa" placeholder="Escrigui la seva resposta"><br>
+        </div>
+        <br>
+            <button type="button" onclick="previousPage()">Previous</button> <button type="button" onclick="validarFormulario()">Next</button>
+    </form>
+
+    <script>
+        function nextPage() {
+            window.location.href = 'pag2eng.html' ;
+        }
+    </script>
+
+    <script>
+            function validarFormulario(event) {
+                var nom = document.getElementById('nom').value;
+                var cognom = document.getElementById('cognom').value;
+                var DNI = document.getElementById('DNI').value;
+                var tel = document.getElementById('num tel').value;
+                var email = document.getElementById('email').value;
+    
+                if (nom === "" || cognom === "" || DNI === "" || tel === "" || email === "") {
+                    alert("Please, fill up all the questions in order to continue.");
+                    event.preventDefault()  
+                    return false              
+                } 
+                var cotxe = document.getElementsByName('cotxe');
+                var seleccionadac = false;
+                for (var i = 0; i < cotxe.length; i++) {
+                    if (cotxe[i].checked) {
+                        seleccionadac = true;
+                        break;
+                    }
+                }
+                if (!seleccionadac) {
+                    alert("Please, fill up all the questions in order to continue.");
+                    event.preventDefault();
+                    return false; 
+                }
+                var emisari = document.getElementsByName('emisari empresa');
+                var seleccionadae = false;
+                for (var i = 0; i < emisari.length; i++) {
+                    if (emisari[i].checked) {
+                        seleccionadae = true;
+                        break;
+                    }
+                }
+                if (!seleccionadae) {
+                    alert("Please, fill up all the questions in order to continue.");
+                    event.preventDefault();
+                    return false;
+                }
+                nextPage()
+            }
+        </script>
+
+    <script>
+        function previousPage(){
+            window.location.href = 'introeng.html' ;
+        }
+    </script>
+</body>
+</html>

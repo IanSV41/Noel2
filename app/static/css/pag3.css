@@ -1,0 +1,96 @@
+body {
+    font-family: "Neue Haas Grotesk Light", sans-serif;
+    color: #2c2A29;
+    letter-spacing: 1px;
+    font-weight: 320;
+    font-size: 1rem;
+    line-height: 1.5;
+    text-align: center;
+    padding: 0 0 0 0;
+    background-color: white;
+    margin: 1%
+}
+button {
+    font-family:"Neue Haas Grotesk Light", sans-serif;
+    color: #2c2A29;
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-size: 0.8rem;
+    line-height: 1.53em;
+    text-align: center;
+    border-radius: 6px;
+    border: 1.5px solid #e4002b;
+}
+header {
+    background-color: #e4002b;
+    color: white;
+    padding: 0.9 px;
+    text-align: center;
+    margin: 0px;
+    line-height: 1;
+}
+h2 {
+    background-color: white;
+    color: #e4002b;
+    padding: 0px 0;
+    text-align: center;
+    font-size: 90%;
+}
+
+h3 {
+    padding: 5px 0px 0px 0px;
+    text-align: left;
+}
+h4{
+    text-align: center;
+    font-weight: normal;
+    padding: 0px 2em;
+}
+h5{
+    text-align: left;
+    font-weight: normal;
+    font-size: 90%;
+}
+p{
+    margin: 3px;
+    text-align: left;
+}
+section {
+    padding: 0px 0px 0px 0px;
+    margin: 10px;
+    text-align: left;
+}
+input{
+    font-family: "Neue Haas Grotesk Light", sans-serif;
+    color: #e4002b;
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-size: 0.9rem;
+    text-align: center;
+    background-color:rgba(255, 253, 253, 0.53);  
+    border-color: #e4002b;
+    border-radius: 6px;
+    border: 1px solid #e4002b;
+}
+
+input::placeholder {
+    color: #2c2A29 ; 
+    font-style: italic; 
+    opacity: 0.5; 
+    font-size: 0.65rem;
+    background-color: rgba(255, 253, 253, 0.53);
+}
+hr {
+    border: none; 
+    height: 3.7px; 
+    background-color: #e4002b; 
+    margin: 14px 0; 
+    width: 100%; 
+}
+.destacado {
+    color: #e4002b; 
+    font-weight: bold;
+}
+img {
+    margin: 1%
+}

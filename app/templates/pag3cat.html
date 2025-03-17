@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquesta per accedir a NOEL</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pag3.css') }}">
+    <style>
+        .header-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+          .header-container img {
+              width: 130px; 
+              align-items: center;      
+          }
+      </style>     
+</head>
+<body>
+    <img src="{{ url_for('static', filename='Normcast/cast1.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast2.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast3.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast4.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast5.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast6.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast7.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast8.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast9.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast10.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast11.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast12.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast13.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast14.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast15.png') }}" alt="Imagen" width="600" height="848"><br>
+    <img src="{{ url_for('static', filename='Normcast/cast16.png') }}" alt="Imagen" width="600" height="848"><br>
+    <h5>
+        <label>
+            <input type="checkbox" name="accepto" value="si">He llegit i accepto la "Política de privacitat" i la "Política de seguretat i salut". 
+        </label><br>
+    </h5>
+
+    <button type="button" onclick="previousPage()">Anterior</button> 
+    <button type="button" onclick="guardarRespuestasPag3()">Següent</button>
+
+    <script>
+        function previousPage() {
+            window.location.href = 'pag2cat.html';
+        }
+
+        function guardarRespuestasPag3() {
+            const data = {
+                accepto: document.querySelector('input[name="accepto"]:checked') ? 'si' : 'no',  // Verifica si se aceptan los términos
+            };
+
+            console.log("Datos de pag3 a enviar:", data);
+
+            // Enviar los datos de la página 3 al servidor
+            fetch('/guardar_pag3', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                if(response.ok) {
+                    nextPage();  // Redirigir a la siguiente página si todo es correcto
+                } else {
+                    alert('Error al guardar los datos.');
+                }
+            })
+            .catch(error => {
+                console.error('Error en fetch:', error);
+                alert('Error al enviar los datos.');
+            });
+        }
+
+        function nextPage() {
+            window.location.href = 'confirmacio_cat.html';}
+    </script>
+</body>
+</html>

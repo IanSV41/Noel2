@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Enquesta per accedir a NOEL</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/pag1.css') }}">
+        <style>
+            .header-container {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+              }
+              .header-container img {
+                  width: 130px; 
+                  align-items: center;      
+              }
+          </style> 
+    </head>
+    <body>
+        <header>
+            <hr>
+            <div class="header-container">
+                <img src="{{ url_for('static', filename='Logospng/logoblanc.png') }}" alt="Imagen">
+            </div>
+            <hr>
+        </header>
+        <section>
+            <br>
+            <p class="destacado"><b>Informació personal</b></p>
+            <br>
+        </section>
+        <form id="quizForm">
+            <div class="question">
+                <p>Nom</p>
+                <input type="text" id="nom" name="nom" placeholder="Escrigui la seva resposta"><br>
+                <p>Cognoms</p>
+                <input type="text" id="cognom" name="cognom" placeholder="Escrigui la seva resposta"><br>
+                <p>Document d'identitat</p>
+                <input type="text" id="DNI" name="DNI" placeholder="Escrigui la seva resposta"><br>
+                <p>Número telefònic</p>
+                <input type="text" id="num_tel" name="num_tel" placeholder="Escrigui la seva resposta"><br>
+                <p>Correu electrònic</p>
+                <input type="text" id="email" name="email" placeholder="Escrigui la seva resposta"><br>
+            </div>
+            
+            <div class="question">
+                <p>Ha vingut amb cotxe?</p>
+                <label>
+                    <input type="radio" id="cotxe_si" name="cotxe" value="si" onclick='document.getElementById("matricula").style.display = "block"'>Sí
+                </label>
+                <label>
+                    <input type="radio" id="cotxe_no" name="cotxe" value="no" onclick='document.getElementById("matricula").style.display = "none"'>No
+                </label>
+            </div>
+            <div id="matricula" style="display:none;">
+                <p>Matrícula</p>
+                <input type="text" id="matricula_input" name="matricula" placeholder="Escrigui la seva resposta"><br>
+            </div>
+
+            <div class="question">
+                <p>Ve de part d'una empresa?</p>
+                <label>
+                    <input type="radio" id="emisari_empresa" name="emisari_empresa" value="si" onclick='document.getElementById("empresa").style.display = "block"'>Sí
+                </label>
+                <label>
+                    <input type="radio" id="emisari_empresa" name="emisari_empresa" value="no" onclick='document.getElementById("empresa").style.display = "none"'>No
+                </label>
+            </div>
+            <div id="empresa" style="display:none;">
+                <p>De part de quina empresa?</p>
+                <input type="text" id="empresa_input" name="empresa" placeholder="Escrigui la seva resposta"><br>
+            </div>
+            <br><button type="button" onclick="previousPage()">Anterior</button> <button type="button" onclick="validarFormulario()">Següent</button>
+        </form>
+
+        <script>
+            function nextPage() {
+                window.location.href = 'pag2cat.html' ;
+            }
+        </script>
+        <script>
+                function guardarRespuestas() {
+                    const data = {
+                        nom: document.getElementById('nom').value,
+                        cognom: document.getElementById('cognom').value,
+                        DNI: document.getElementById('DNI').value,
+                        num_tel: document.getElementById('num_tel').value,
+                        email: document.getElementById('email').value,
+                        cotxe: Array.from(document.getElementsByName('cotxe')).find(el => el.checked)?.value || '',
+                        matricula: document.getElementById('matricula_input').value,
+                        emisari_empresa: Array.from(document.getElementsByName('emisari_empresa')).find(el => el.checked)?.value || '',
+                        empresa: document.getElementById('empresa_input').value
+                    };
+
+                    // Mostrar los datos en un alert
+                   
+
+                    fetch('/guardar_pag1', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            window.location.href = 'pag2cat.html';
+                        } else {
+                            alert('Error al guardar los datos.');
+                        }
+                    })
+                    .catch(error => {
+                        alert('Error al enviar los datos: ' + error.message);
+                    });
+                }
+        </script>
+            
+
+        <script>
+            function validarFormulario(event) {
+                var nom = document.getElementById('nom').value;
+                var cognom = document.getElementById('cognom').value;
+                var DNI = document.getElementById('DNI').value;
+                var tel = document.getElementById('num_tel').value;
+                var email = document.getElementById('email').value;
+    
+                if (nom === "" || cognom === "" || DNI === "" || tel === "" || email === "") {
+                    alert("Si us plau, empleni tots els camps per continuar.");
+                    event.preventDefault()  
+                    return false              
+                } 
+                var cotxe = document.getElementsByName('cotxe');
+                var seleccionadac = false;
+                for (var i = 0; i < cotxe.length; i++) {
+                    if (cotxe[i].checked) {
+                        seleccionadac = true;
+                        break;
+                    }
+                }
+                if (!seleccionadac) {
+                    alert("Si us plau, empleni tots els camps per continuar.");
+                    event.preventDefault();
+                    return false; 
+                }
+                var emisari = document.getElementsByName('emisari_empresa');
+                var seleccionadae = false;
+                for (var i = 0; i < emisari.length; i++) {
+                    if (emisari[i].checked) {
+                        seleccionadae = true;
+                        break;
+                    }
+                }
+                if (!seleccionadae) {
+                    alert("Si us plau, empleni tots els camps per continuar.");
+                    event.preventDefault();
+                    return false;
+                }
+                guardarRespuestas();
+            }
+        </script>
+
+        <script>
+            function previousPage(){
+                window.location.href = 'introcat.html' ;
+            }
+        </script>
+    </body>
+</html>

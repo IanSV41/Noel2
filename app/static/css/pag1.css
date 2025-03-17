@@ -1,0 +1,79 @@
+body {
+    font-family: "Neue Haas Grotesk Light", sans-serif;
+    color: #2c2A29;
+    letter-spacing: 1px;
+    font-weight: 320;
+    font-size: 1rem;
+    line-height: 0.8;
+    text-align: center;
+    padding: 0 0 0 0;
+    background-color: white;
+}
+button {
+    font-family:"Neue Haas Grotesk Light", sans-serif;
+    color: #2c2A29;
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-size: 0.8rem;
+    line-height: 1.53em;
+    text-align: center;
+    border-radius: 6px;
+    border: 1.5px solid #e4002b;
+}
+header {
+    background-color: #e4002b;
+    color: white;
+    padding: 0.9 px;
+    text-align: center;
+    margin: 0px;
+    line-height: 1;
+}
+
+form{
+    font-size: 90%;
+}
+section {
+    padding: 20 px;
+    text-align: center;
+}
+#error{
+    color: red;
+    background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            display: none;
+}
+
+input{
+    font-family: "Neue Haas Grotesk Light", sans-serif;
+    color: #2c2A29;
+    letter-spacing: 1px;
+    font-weight: 300;
+    font-size: 0.9rem;
+    text-align: center;
+    background-color:rgba(255, 253, 253, 0.53);  
+    border-color: #e4002b;
+    border-radius: 6px;
+    border: 1px solid #e4002b;
+}
+
+input::placeholder {
+    color: #2c2A29 ; 
+    font-style: italic; 
+    opacity: 0.55; 
+    font-size: 0.65rem;
+    background-color: rgba(255, 253, 253, 0.53);
+}
+hr {
+    border: none; 
+    height: 3.7px; 
+    background-color: #e4002b; 
+    margin: 14px 0; 
+    width: 100%; 
+}
+.destacado {
+    color: #e4002b; 
+    font-weight: bold;
+}

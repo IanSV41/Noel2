@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="'UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enquesta per accedir a NOEL</title>
+    <link rel="stylesheet" href={{url_for('static', filename='css/intro.css')}}>
+    <style>
+        .header-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+          .header-container img {
+              width: 130px; 
+              align-items: center;      
+          }
+
+        .image-container {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+          }
+          .image-container img {
+              width: 80%; /* Ajusta el tamaño de la imagen */
+              align-items: center;
+              
+          }
+  
+      </style>
+</head>
+<body>
+    <header>
+        <hr>
+        <div class="header-container">
+            <img src="{{ url_for('static', filename='Logospng/logoblanc.png') }}" alt="Imagen">
+        </div>
+        <hr>
+    </header>
+    <section>
+        <br><br>
+        <p>Please, remember to <strong>pass through the security booth</strong> in order to verify your identification document.</p><br>
+        <p>Once your identity has been verified, please go to the following location to meet the staff in charge of your visit.</p><br>
+        <p>Thank you so much and have a great visit!</p><br>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='Fotfinmap/provamapa.png') }}" alt="Segunda Imagen">
+        </div>
+        <br>
+        <p>Please, make sure to preserve or to make a screenshot of the QR that will be used to record your passage through our facilities.</p>
+        <img id="qr-code" src="" alt="QR Code" />
+        <button onclick="generarQR()" style="display: none;">Generar QR</button>
+        <br>
+    </section>
+    <script>
+        function generarQR() {
+            const randomString = Math.random().toString(36).substring(7);
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${randomString}&size=200x200`;
+            document.getElementById('qr-code').src = qrUrl;
+        }
+        generarQR();
+    </script>
+</body>
+</html>
